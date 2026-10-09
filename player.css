@@ -1,0 +1,26 @@
+html, body { height: 100%; margin: 0; }
+body {
+  display: flex;
+  flex-direction: column;
+  color: #ececf4;
+  background: #0f0f14;
+  font: 13px/1.4 "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+}
+.bar {
+  display: flex;
+  flex: none;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 4px 12px;
+  background: #181822;
+  border-bottom: 1px solid #2a2a38;
+}
+.title { overflow: hidden; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.open-site { flex: none; color: #aaaaff; text-decoration: none; }
+.open-site:hover, .open-site:focus-visible { text-decoration: underline; }
+.stage { position: relative; flex: 1; }
+.stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.message { margin: 0; padding: 24px; color: #a0a0b4; }
+[hidden] { display: none !important; }
