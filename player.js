@@ -7,27 +7,27 @@ const PLAYERS = {
   youtube: {
     key: "id", pattern: /^[A-Za-z0-9_-]{11}$/,
     embed: id => `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1`,
-    page: id => `https://www.youtube.com/watch?v=${id}`, name: "YouTube"
+    name: "YouTube"
   },
   twitch: {
     key: "channel", pattern: /^[A-Za-z0-9_]{2,25}$/,
     embed: channel => `https://player.twitch.tv/?channel=${channel}&parent=${location.hostname}&autoplay=true`,
-    page: channel => `https://www.twitch.tv/${channel}`, name: "Twitch"
+    name: "Twitch"
   },
   twitchvideo: {
     key: "video", pattern: /^[0-9]{1,15}$/,
     embed: video => `https://player.twitch.tv/?video=${video}&parent=${location.hostname}&autoplay=true`,
-    page: video => `https://www.twitch.tv/videos/${video}`, name: "Twitch"
+    name: "Twitch"
   },
   twitchclip: {
     key: "clip", pattern: /^[A-Za-z0-9_-]{2,100}$/,
     embed: clip => `https://clips.twitch.tv/embed?clip=${clip}&parent=${location.hostname}&autoplay=true`,
-    page: clip => `https://clips.twitch.tv/${clip}`, name: "Twitch"
+    name: "Twitch"
   },
   imdb: {
     key: "id", pattern: /^vi[0-9]{4,12}$/,
     embed: id => `https://www.imdb.com/video/embed/${id}/`,
-    page: id => `https://www.imdb.com/video/${id}/`, name: "IMDb"
+    name: "IMDb"
   }
 };
 
@@ -37,22 +37,15 @@ function show() {
   const value = player ? params.get(player.key) || "" : "";
   const stage = document.getElementById("stage");
   const message = document.getElementById("message");
-  const openSite = document.getElementById("open-site");
-  const title = document.getElementById("title");
   stage.querySelectorAll("iframe").forEach(frame => frame.remove());
   if (!player || !player.pattern.test(value)) {
     message.hidden = false;
-    openSite.hidden = true;
-    title.textContent = "AddOrHide player";
     document.title = "AddOrHide player";
     return;
   }
   const label = (params.get("title") || player.name).slice(0, 200);
-  title.textContent = label;
+  // The window's own title bar shows this; each official player has its own link back to the site.
   document.title = `${label} - AddOrHide player`;
-  openSite.href = player.page(value);
-  openSite.textContent = `Open on ${player.name} ↗`;
-  openSite.hidden = false;
   message.hidden = true;
   const frame = document.createElement("iframe");
   frame.src = player.embed(value);
