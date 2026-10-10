@@ -9,3 +9,5 @@ trackers other than the official player, enforced by its Content-Security-Policy
 
 Browser pages of extensions cannot host these players (YouTube answers "Error 153", Twitch and IMDb refuse
 to be framed there), which is why the player lives on an ordinary web page.
+
+The AddOrHide privacy policy is published here too: https://novadreamer.github.io/addorhide-player/privacy.html
